@@ -5,6 +5,7 @@
   --secondary-font-color: #9f9ea6;
   --component-color: #00bcd4;
   --hover-color: #201f28;
+  --selection: #f6ce6f;
 }
 
 body {
@@ -33,6 +34,7 @@ body {
 h4 {
   color: var(--primary-font-color);
   text-align: center;
+  margin-top: 0;
 }
 
 button {
@@ -60,7 +62,7 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   background: var(--box-background);
-  height: 50px;
+  height: 70px;
   padding: 0.4rem 1.5rem;
   position: relative;
 }
@@ -108,6 +110,12 @@ button:hover {
   color: var(--secondary-font-color);
 }
 
+.range-text {
+  float: right;
+  color: var(--component-color);
+  margin-right: 12px;
+}
+
 .form-group:not(:first-child) {
   margin-top: 1.5rem;
 }
@@ -147,6 +155,7 @@ button:hover {
 .strength__indication-status {
   margin-right: 15px;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .strength__indication-bar {
@@ -159,4 +168,30 @@ button:hover {
   margin-right: 5px;
   background-color: var(--main-background);
   border: 1px solid var(--secondary-font-color);
+}
+
+.strength__indication-bar.weak div:nth-child(-n + 1) {
+  background: var(--selection);
+  border-color: var(--selection);
+}
+
+.strength__indication-bar.fair div:nth-child(-n + 2) {
+  background: var(--selection);
+  border-color: var(--selection);
+}
+
+.strength__indication-bar.good div:nth-child(-n + 3) {
+  background: var(--selection);
+  border-color: var(--selection);
+}
+
+.strength__indication-bar.strong div:nth-child(-n + 4) {
+  background: var(--selection);
+  border-color: var(--selection);
+}
+
+@media only screen and (min-width: 600px) {
+  .main-container {
+    width: 550px;
+  }
 }
