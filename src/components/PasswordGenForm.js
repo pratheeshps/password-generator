@@ -1,7 +1,7 @@
 import StrengthMeter from "./StrengthMeter";
-import { generatePassword } from "../utils";
+import { generatePassword, strengthMeter } from "../utils";
+import { useState,useMemo  } from "react";
 
-import { useState } from "react";
 export default function PasswordGenForm({ setGeneratedpassword }) {
   const [formData, setFormData] = useState({
     range: "12",
@@ -24,11 +24,16 @@ export default function PasswordGenForm({ setGeneratedpassword }) {
       [e.target.name]: value
     }));
   };
+  
+  const strengthConfig = useMemo(() => {
+      const {range, ...rest} = formData;
+      return strengthMeter(rest);
+  }, [formData])
 
   return (
     <form onSubmit={handleSubmit} className="configblock">
       <div className="form-group">
-        <label>Character length {formData.range}</label>
+        <label>Character length <span className="range-text">{formData.range}</span></label>
         <div className="range">
           <input
             onChange={handleChange}
@@ -87,7 +92,7 @@ export default function PasswordGenForm({ setGeneratedpassword }) {
       </div>
 
       <div className="form-group">
-        <StrengthMeter />
+        <StrengthMeter strengthConfig={strengthConfig}/>
       </div>
 
       <div className="form-group">

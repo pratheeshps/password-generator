@@ -1,16 +1,20 @@
-export default function StrengthMeter() {
+export default function StrengthMeter({ strengthConfig }) {
   return (
-    <div className="box strength">
-      <div className="strength__name">STRENGTH</div>
-      <div className="strength__indication">
-        <div className="strength__indication-status">MEDIUM</div>
-        <div className="strength__indication-bar">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+    <>
+        {strengthConfig &&
+        <div className="box strength">
+        <div className="strength__name">STRENGTH</div>
+        <div className="strength__indication">
+            <div className="strength__indication-status">{strengthConfig}</div>
+            <div className={`strength__indication-bar ${strengthConfig.toLowerCase()}`}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
-      </div>
-    </div>
+        </div>
+        }
+    </>
   );
 }

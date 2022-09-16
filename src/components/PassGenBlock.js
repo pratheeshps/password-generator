@@ -7,22 +7,26 @@ export default function PassGenBlock({ generatedPassword }) {
 
   const handleClick = () => {
     if (!generatedPassword) return;
-    // Select the text field
     inputRef.current.select();
     inputRef.current.setSelectionRange(0, 99999); // For mobile devices
-    // Copy the text inside the text field
     navigator.clipboard.writeText(inputRef.current.value);
     setNotification(true);
     timeOutRef = setTimeout(() => {
       setNotification(false);
     }, 2000);
   };
+  
+  useEffect(() =>{
+      inputRef.current.value = generatedPassword;
+  }, [generatedPassword])
 
   useEffect(() => {
     return () => {
       clearTimeout(timeOutRef);
     };
   }, []);
+  
+
 
   return (
     <div className="passblock">
@@ -31,7 +35,6 @@ export default function PassGenBlock({ generatedPassword }) {
         ref={inputRef}
         type="text"
         className="hidden"
-        value={generatedPassword}
       />
       <div
         className="passblock__icon pointer"
