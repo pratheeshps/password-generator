@@ -1,2 +1,2 @@
 # password-generator
-Created with CodeSandbox
+Random password generator appication.
